@@ -105,8 +105,8 @@ fi;
 PS1="\[\033]0;\W\007\]"; # working directory base name
 PS1+="\[${reset}\]\n"; # newline
 PS1+="\[${userStyle}\]\u"; # username
-# PS1+="\[${white}\] at ";
-# PS1+="\[${hostStyle}\]\h"; # host
+PS1+="\[${white}\] at ";
+PS1+="\[${hostStyle}\]\h"; # host
 PS1+="\[${white}\] in ";
 PS1+="\[${blue}\]\w"; # working directory full path
 PS1+="\$(prompt_git \"\[${white}\] @ \[${green}\]\" \"\[${blue}\]\")"; # Git repository details
@@ -116,3 +116,24 @@ export PS1;
 
 PS2="\[${yellow}\]→ \[${reset}\]";
 export PS2;
+
+# HomeBre
+eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="/opt/homebrew/opt/node@12/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
+export PATH="/opt/homebrew/opt/node@14/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$PATH:$HOME/flutter/bin"
+
+alias sshcronec2="ssh ubuntu@13.233.30.113 -i ~/rowdy-sk-re.pem"
+alias htconf="cd /opt/homebrew/etc/httpd/"
+
+
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH=$PATH:/Applications/"Android Studio.app"/Contents/jre/jdk/Contents/Home/bin
+export JAVA_HOME=/Applications/"Android Studio.app"/Contents/jre/jdk/Contents/Home
+export ANDROID_SDK_ROOT="/Users/sriramkasyapm/Library/Android/sdk"
