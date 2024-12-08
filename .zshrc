@@ -89,12 +89,24 @@ else
     host_style="%F{136}"
 fi
 
+# Function to get IP address
+function get_ip_address() {
+    local ip=""
+    # Get all active network interfaces
+    for interface in $(networksetup -listallhardwareports | grep -A 1 "Hardware Port" | grep "Device:" | awk '{print $2}'); do
+        if ip=$(ipconfig getifaddr $interface 2>/dev/null); then
+            echo "$ip"
+            return
+        fi
+    done
+    echo "no IP"
+}
+
 # Set prompt
 setopt PROMPT_SUBST
 PROMPT=$'\n'
 PROMPT+='${user_style}%n%f'  # username
-PROMPT+='%F{white} at %f'
-PROMPT+='${host_style}%m%f'  # hostname
+PROMPT+='%F{host_style} at $(get_ip_address) %f'
 PROMPT+='%F{white} in %f'
 PROMPT+='%F{33}%~%f'  # current directory
 PROMPT+='$(git_prompt_info)'  # git information
