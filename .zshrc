@@ -12,6 +12,11 @@ fi
 
 # Git status function for prompt
 function git_prompt_info() {
+    # First check if we're in a git repository
+    if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+        return
+    fi
+
     local ref
     ref=$(git symbolic-ref --quiet --short HEAD 2> /dev/null || \
         git describe --all --exact-match HEAD 2> /dev/null || \
